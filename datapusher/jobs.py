@@ -333,7 +333,8 @@ def push_to_datastore(task_id, input, dry_run=False):
         if resource.get('url_type') == 'upload':
             # If this is an uploaded file to CKAN, authenticate the request,
             # otherwise we won't get file from private resources
-            request.add_header('Authorization', api_key)
+            #request.add_header('Authorization', api_key)
+            request.add_unredirected_header('Authorization', api_key)
 
         response = urllib2.urlopen(request, timeout=DOWNLOAD_TIMEOUT)
     except urllib2.HTTPError as e:
